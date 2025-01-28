@@ -4,8 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --loader ts-node/esm src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsx --watch src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +26,7 @@
     "@types/jsonwebtoken": "^9.0.8",
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.10",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2"
   }
 }

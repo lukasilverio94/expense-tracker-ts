@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "moduleResolution": "node",
-    "module": "ESNext",
+    "target": "ES6", // or "ES2022"
+    "module": "ESNext", // Use ESNext for ES modules
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
+  },
+  "ts-node": {
+    "esm": true // Enable ES modules support for ts-node
   }
 }
