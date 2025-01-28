@@ -7,6 +7,11 @@ export class AuthService {
 
   async register(username: string, password: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    const existingUser = await this.userRepository.findUserByUsername(username);
+    if (existingUser) {
+      throw new Error("This username is already taken");
+    }
     const user = await this.userRepository.createUser({
       username,
       password: hashedPassword,

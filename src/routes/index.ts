@@ -10,8 +10,11 @@ const expenseController = new ExpenseController();
 router.post("/register", authController.handleRegisterUser);
 router.post("/login", authController.handleLoginUser);
 
-router.use(authMiddleware);
-router.post("/expenses", expenseController.handleAddExpense);
-router.get("/expenses", expenseController.handleGetUserExpenses);
+router.post("/expenses", authMiddleware, expenseController.handleAddExpense);
+router.get(
+  "/expenses",
+  authMiddleware,
+  expenseController.handleGetUserExpenses
+);
 
 export default router;
