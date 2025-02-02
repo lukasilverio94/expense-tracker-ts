@@ -28,6 +28,7 @@
     "@types/jsonwebtoken": "^9.0.8",
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.10",
+    "esbuild": "^0.24.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2"
   }
