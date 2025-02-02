@@ -13,4 +13,8 @@ export class ExpenseRepository {
   async getExpensesByUserId(userId: number): Promise<Expense[]> {
     return db("expenses").where({ user_id: userId });
   }
+
+  async getExpenseById(expenseId: number): Promise<Expense[]> {
+    return db("expenses").where({id: expenseId});
+  }
 }

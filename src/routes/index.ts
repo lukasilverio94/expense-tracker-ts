@@ -12,5 +12,6 @@ router.post("/login", authController.handleLoginUser);
 
 router.post("/expenses", authMiddleware, expenseController.handleAddExpense.bind(expenseController));
 router.get("/expenses", authMiddleware, expenseController.handleGetUserExpenses.bind(expenseController));
+router.get("/expenses/:expenseId", authMiddleware, expenseController.handleGetUserExpense.bind(expenseController));
 
 export default router;

@@ -21,4 +21,12 @@ export class ExpenseService {
   async getExpenses(userId: number) {
     return this.expenseRepository.getExpensesByUserId(userId);
   }
+
+  async getExpenseById(expenseId: number){
+    const expense = await this.expenseRepository.getExpenseById(expenseId);
+    if(!expense){
+      throw new Error("Expense not found");
+    }
+    return expense;
+  }
 }
