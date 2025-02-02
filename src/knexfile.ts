@@ -13,10 +13,10 @@ const config: { [key: string]: Knex.Config } = {
       database: process.env.DB_NAME,
     },
     migrations: {
-      directory: "./src/migrations",
+      directory: "./src/database/migrations",
     },
     seeds: {
-      directory: "./src/seeds",
+      directory: "./src/database/seeds",
     },
   },
 };

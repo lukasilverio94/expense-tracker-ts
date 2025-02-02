@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import knex from "knex";
-import config from "../knexfile";
+import config from "../../knexfile";
 const db = knex(config.development);
 export class UserRepository {
     createUser(user) {
