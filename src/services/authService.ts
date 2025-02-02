@@ -1,11 +1,12 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { UserRepository } from "../repositories/userRepository.js";
+import { User } from "../types/user.js";
 
 export class AuthService {
   private userRepository = new UserRepository();
 
-  async register(username: string, password: string) {
+  async register(username: string, password: string): Promise<User> {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const existingUser = await this.userRepository.findUserByUsername(username);
@@ -19,7 +20,7 @@ export class AuthService {
     return user;
   }
 
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<string> {
     const user = await this.userRepository.findUserByUsername(username);
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new Error("Invalid credentials");

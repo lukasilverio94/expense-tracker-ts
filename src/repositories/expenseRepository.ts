@@ -14,7 +14,10 @@ export class ExpenseRepository {
     return db("expenses").where({ user_id: userId });
   }
 
-  async getExpenseById(expenseId: number): Promise<Expense[]> {
-    return db("expenses").where({ id: expenseId });
+  async getExpenseById(expenseId: number): Promise<Expense | null> {
+    const expense = await knex<Expense>("expenses")
+      .where({ id: expenseId })
+      .first();
+    return expense || null;
   }
 }

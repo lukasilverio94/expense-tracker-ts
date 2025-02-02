@@ -24,7 +24,10 @@ export class ExpenseRepository {
     }
     getExpenseById(expenseId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return db("expenses").where({ id: expenseId });
+            const expense = yield knex("expenses")
+                .where({ id: expenseId })
+                .first();
+            return expense || null;
         });
     }
 }

@@ -1,3 +1,4 @@
+import { Expense } from "./../types/expense";
 import { ExpenseRepository } from "../repositories/expenseRepository.js";
 
 export class ExpenseService {
@@ -8,7 +9,7 @@ export class ExpenseService {
     category: string,
     amount: number,
     description?: string,
-  ) {
+  ): Promise<Expense> {
     const expense = await this.expenseRepository.createExpense({
       user_id: userId,
       category,
@@ -18,11 +19,11 @@ export class ExpenseService {
     return expense;
   }
 
-  async getExpenses(userId: number) {
+  async getExpenses(userId: number): Promise<Expense[]> {
     return this.expenseRepository.getExpensesByUserId(userId);
   }
 
-  async getExpenseById(expenseId: number) {
+  async getExpenseById(expenseId: number): Promise<Expense> {
     const expense = await this.expenseRepository.getExpenseById(expenseId);
     if (!expense) {
       throw new Error("Expense not found");
