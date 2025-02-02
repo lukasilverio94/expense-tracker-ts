@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "ES6", // or "ES2022"
     "module": "ESNext", // Use ESNext for ES modules
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "./dist", // Output directory for compiled JS files
+    "rootDir": "./src", // Source directory :for TS files
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -11,6 +11,7 @@
     "moduleResolution": "node"
   },
   "ts-node": {
-    "esm": true // Enable ES modules support for ts-node
-  }
+    "esm": true,
+  },
+  "include": ["src/**/*"] 
 }

@@ -1,19 +1,16 @@
 import { Request, Response, NextFunction } from "express";
-import AppError from "../utils/AppError.js";
 
-const errorHandlerMiddleware = (
-  err: Error | AppError,
-  req: Request, 
+export const errorHandlerMiddleware = (
+  err: any,
+  req: Request,
   res: Response,
   next: NextFunction
-) => {
-  if(err instanceof AppError){
-    return res.status(err.status || 400).json({ message: err.message });
-  }
+): void => {
+  console.error("Error:", err); 
 
-  // default 500 error for unhandled error
-  console.log("Unhandled error:", err);
-  res.status(500).json({message: "An unexpected error occured" });
-}
+  const statusCode = err.status || 500;
+  const message = err.message || "Internal Server Error";
 
-export { errorHandlerMiddleware } ;
+  res.status(statusCode).json({ message });
+};
+

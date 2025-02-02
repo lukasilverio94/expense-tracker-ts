@@ -22,4 +22,9 @@ export class ExpenseRepository {
             return db("expenses").where({ user_id: userId });
         });
     }
+    getExpenseById(expenseId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return db("expenses").where({ id: expenseId });
+        });
+    }
 }

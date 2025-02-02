@@ -28,4 +28,13 @@ export class ExpenseService {
             return this.expenseRepository.getExpensesByUserId(userId);
         });
     }
+    getExpenseById(expenseId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const expense = yield this.expenseRepository.getExpenseById(expenseId);
+            if (!expense) {
+                throw new Error("Expense not found");
+            }
+            return expense;
+        });
+    }
 }

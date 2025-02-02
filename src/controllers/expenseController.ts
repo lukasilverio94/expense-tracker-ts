@@ -25,7 +25,7 @@ export class ExpenseController {
     try {
       const userId = req.user?.userId;
       if (!userId) throw new Error("Unauthorized");
-      const expenses = await this.expenseService.getExpenses(userId);
+      const expenses = await this.expenseService.getExpenses(Number(userId));
       res.json(expenses);
     } catch(error){ 
       next(error);
@@ -36,7 +36,7 @@ export class ExpenseController {
   async handleGetUserExpense(req: Request, res: Response, next: NextFunction){
     try{
       const { expenseId } = req.params;
-      const expense = await this.expenseService.getExpenseById(expenseId);
+      const expense = await this.expenseService.getExpenseById(Number(expenseId));
     res.json(expense);
     } catch(error){
       next(error);

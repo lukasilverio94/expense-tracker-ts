@@ -12,25 +12,47 @@ export class ExpenseController {
     constructor() {
         this.expenseService = new ExpenseService();
     }
-    handleAddExpense(req, res) {
+    handleAddExpense(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;
-            const { category, amount, description } = req.body;
-            const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
-            if (!userId)
-                throw new Error("Unauthorized");
-            const expense = yield this.expenseService.addExpense(userId, category, amount, description);
-            res.status(201).json(expense);
+            try {
+                const { category, amount, description } = req.body;
+                const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
+                if (!userId)
+                    throw new Error("Unauthorized");
+                const expense = yield this.expenseService.addExpense(userId, category, amount, description);
+                res.status(201).json(expense);
+            }
+            catch (error) {
+                next(error);
+            }
         });
     }
-    handleGetUserExpenses(req, res) {
+    handleGetUserExpenses(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;
-            const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
-            if (!userId)
-                throw new Error("Unauthorized");
-            const expenses = yield this.expenseService.getExpenses(userId);
-            res.json(expenses);
+            try {
+                const userId = (_a = req.user) === null || _a === void 0 ? void 0 : _a.userId;
+                if (!userId)
+                    throw new Error("Unauthorized");
+                const expenses = yield this.expenseService.getExpenses(Number(userId));
+                res.json(expenses);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
+    handleGetUserExpense(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { expenseId } = req.params;
+                const expense = yield this.expenseService.getExpenseById(Number(expenseId));
+                res.json(expense);
+            }
+            catch (error) {
+                next(error);
+            }
         });
     }
 }

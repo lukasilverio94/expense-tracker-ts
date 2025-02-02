@@ -17,6 +17,10 @@ export class AuthService {
     register(username, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const hashedPassword = yield bcrypt.hash(password, 10);
+            const existingUser = yield this.userRepository.findUserByUsername(username);
+            if (existingUser) {
+                throw new Error("This username is already taken");
+            }
             const user = yield this.userRepository.createUser({
                 username,
                 password: hashedPassword,
