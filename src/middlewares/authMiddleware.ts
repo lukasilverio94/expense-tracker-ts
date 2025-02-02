@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 export function authMiddleware(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   const token = req.header("Authorization")?.replace("Bearer ", "");
   if (!token) {

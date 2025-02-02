@@ -13,10 +13,10 @@ export class ExpenseController {
         userId,
         category,
         amount,
-        description
+        description,
       );
       res.status(201).json(expense);
-    } catch(error){
+    } catch (error) {
       next(error);
     }
   }
@@ -27,18 +27,19 @@ export class ExpenseController {
       if (!userId) throw new Error("Unauthorized");
       const expenses = await this.expenseService.getExpenses(Number(userId));
       res.json(expenses);
-    } catch(error){ 
+    } catch (error) {
       next(error);
     }
+  }
 
-}
-
-  async handleGetUserExpense(req: Request, res: Response, next: NextFunction){
-    try{
+  async handleGetUserExpense(req: Request, res: Response, next: NextFunction) {
+    try {
       const { expenseId } = req.params;
-      const expense = await this.expenseService.getExpenseById(Number(expenseId));
-    res.json(expense);
-    } catch(error){
+      const expense = await this.expenseService.getExpenseById(
+        Number(expenseId),
+      );
+      res.json(expense);
+    } catch (error) {
       next(error);
     }
   }

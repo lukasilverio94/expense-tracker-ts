@@ -1,6 +1,6 @@
 import knex from "knex";
-import config from "../knexfile.ts";
-import { User } from "../types";
+import config from "../knexfile";
+import { User } from "../types/user";
 
 const db = knex(config.development);
 

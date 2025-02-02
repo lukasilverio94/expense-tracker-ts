@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsx --watch src/server.ts",
     "migrate": "knex migrate:latest --knexfile knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile knexfile.js"
+    "rollback": "knex migrate:rollback --knexfile knexfile.js",
+    "prettier": "npx prettier . --write"
   },
   "keywords": [],
   "author": "",
@@ -23,13 +24,18 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.19.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.10",
     "esbuild": "^0.24.2",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "prettier": "3.4.2",
     "ts-node": "^10.9.2",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "typescript-eslint": "^8.22.0"
   }
 }

@@ -7,7 +7,7 @@ export class ExpenseService {
     userId: number,
     category: string,
     amount: number,
-    description?: string
+    description?: string,
   ) {
     const expense = await this.expenseRepository.createExpense({
       user_id: userId,
@@ -22,9 +22,9 @@ export class ExpenseService {
     return this.expenseRepository.getExpensesByUserId(userId);
   }
 
-  async getExpenseById(expenseId: number){
+  async getExpenseById(expenseId: number) {
     const expense = await this.expenseRepository.getExpenseById(expenseId);
-    if(!expense){
+    if (!expense) {
       throw new Error("Expense not found");
     }
     return expense;

@@ -11,15 +11,25 @@ import { AuthService } from "../services/authService.js";
 export class AuthController {
     constructor() {
         this.authService = new AuthService();
-        this.handleRegisterUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { username, password } = req.body;
-            const user = yield this.authService.register(username, password);
-            res.status(201).json(user);
+        this.handleRegisterUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { username, password } = req.body;
+                const user = yield this.authService.register(username, password);
+                res.status(201).json(user);
+            }
+            catch (error) {
+                next(error);
+            }
         });
-        this.handleLoginUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { username, password } = req.body;
-            const token = yield this.authService.login(username, password);
-            res.json({ token });
+        this.handleLoginUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { username, password } = req.body;
+                const token = yield this.authService.login(username, password);
+                res.json({ token });
+            }
+            catch (error) {
+                next(error);
+            }
         });
     }
 }

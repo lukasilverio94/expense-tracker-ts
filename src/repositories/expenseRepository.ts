@@ -1,6 +1,6 @@
 import knex from "knex";
-import config from "../knexfile.ts";
-import { Expense } from "../types.js";
+import config from "../knexfile";
+import { Expense } from "../types/expense";
 
 const db = knex(config.development);
 
@@ -15,6 +15,6 @@ export class ExpenseRepository {
   }
 
   async getExpenseById(expenseId: number): Promise<Expense[]> {
-    return db("expenses").where({id: expenseId});
+    return db("expenses").where({ id: expenseId });
   }
 }
